@@ -54,7 +54,12 @@ while (right_stack.get_size() != num_disks):
     if from_stack.get_size() == 0:
       print("\n\nInvalid Move. Try Again")
       continue
-    elif (to_stack.get_size() ==0) or from_stack.peek()<to_stack.peek():
+    elif (to_stack.get_size() ==0):
+      disk = from_stack.pop()
+      to_stack.push(disk)
+      num_user_moves += 1
+      print("you let {0}:{1} moved to {2}".format(from_stack.get_name(),disk,to_stack.get_name()))
+    elif from_stack.peek()<to_stack.peek():
       disk = from_stack.pop()
       to_stack.push(disk)
       num_user_moves += 1
@@ -62,9 +67,6 @@ while (right_stack.get_size() != num_disks):
     else:
       print("\n\nInvalid Move. Try Again")
       break
-    else:
-      continue
-    break
     
   print("\n\nYou completed the game in {0} moves, and the optimal number of moves is {1}".format(num_user_moves, num_optimal_moves))
 
